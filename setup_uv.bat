@@ -27,9 +27,9 @@ echo [2/4] 创建虚拟环境 ...
 if not exist .venv uv venv .venv
 
 echo [3/4] 从 requirements.txt 安装依赖 ...
-.venv\Scripts\uv.exe pip install -r assets\requirements.txt
+uv pip install -r requirements.txt
 if errorlevel 1 (
-    .venv\Scripts\python.exe -m pip install -r assets\requirements.txt
+    .venv\Scripts\python.exe -m pip install -r requirements.txt
 )
 
 echo [4/4] 验证安装 ...

@@ -45,7 +45,7 @@ if [ ! -d ".venv" ]; then
 fi
 
 echo "[3/4] 从 requirements.txt 安装依赖 ..."
-uv pip install -r assets/requirements.txt
+uv pip install -r requirements.txt
 
 echo "[4/4] 验证安装 ..."
 .venv/bin/python -c "from PyQt5.QtWidgets import QApplication; print('PyQt5 安装成功')"
@@ -53,5 +53,5 @@ echo "[4/4] 验证安装 ..."
 echo ""
 echo "========================================"
 echo "  安装完成！"
-echo "  运行: bash start.sh  或  .venv/bin/python ss.py"
+echo "  运行: bash start.sh  或  .venv/bin/python main.py"
 echo "========================================"
