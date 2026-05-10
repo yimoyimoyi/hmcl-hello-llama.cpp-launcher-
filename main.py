@@ -51,7 +51,7 @@ _RIGHT = Qt.AlignRight
 class LlamaProLauncher(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Llama Pro Launcher")
+        self.setWindowTitle("Hello Llama.cpp Launcher")
         self.setMinimumSize(420, 280)
 
         self.config_path = CONFIG_PATH
@@ -61,7 +61,7 @@ class LlamaProLauncher(QMainWindow):
         # 多语言初始化
         lang = self.config.get("lang", "zh")
         _apply_locale_to_globals(lang)
-        self.setWindowTitle(WIN_TITLES.get("main", "Llama Pro Launcher"))
+        self.setWindowTitle(WIN_TITLES.get("main", "Hello Llama.cpp Launcher"))
 
         # 字体
         self._custom_font_family: Optional[str] = None
@@ -206,7 +206,7 @@ class LlamaProLauncher(QMainWindow):
             self._rebuild_ui()
 
     def _rebuild_ui(self):
-        self.setWindowTitle(WIN_TITLES.get("main", "Llama Pro Launcher"))
+        self.setWindowTitle(WIN_TITLES.get("main", "Hello Llama.cpp Launcher"))
         central = self.centralWidget()
         if central:
             central.deleteLater()
