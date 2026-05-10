@@ -39,6 +39,7 @@ from src.launcher import LaunchThread
 from src.download import ReleaseDownloadThread, VramCheckThread
 from src.widgets import (
     CollapsibleSection, AdaptiveComboBox, ConsoleWidget, CommandPreviewDialog,
+    NoWheelSpinBox, NoWheelDoubleSpinBox,
 )
 
 _LEFT  = Qt.AlignLeft
@@ -367,7 +368,6 @@ class LlamaProLauncher(QMainWindow):
 
         self._model_combo = AdaptiveComboBox()
         self._model_combo.currentIndexChanged.connect(self.on_model_change)
-        self._model_combo.wheelEvent = lambda e: None
         mw.addWidget(self._model_combo)
 
         # 预设按钮
@@ -405,18 +405,16 @@ class LlamaProLauncher(QMainWindow):
                     if ptype == "string":
                         w = QLineEdit(str(param.get("default", "")))
                     elif ptype == "int":
-                        w = QSpinBox()
+                        w = NoWheelSpinBox()
                         w.setRange(param.get("min", 0), param.get("max", 999999))
                         w.setSingleStep(param.get("step", 1))
                         w.setValue(int(param.get("default", 0)))
-                        w.wheelEvent = lambda e: None
                     elif ptype == "float":
-                        w = QDoubleSpinBox()
+                        w = NoWheelDoubleSpinBox()
                         w.setRange(param.get("min", 0.0), param.get("max", 100.0))
                         w.setSingleStep(param.get("step", 0.1))
                         w.setDecimals(3)
                         w.setValue(float(param.get("default", 0.0)))
-                        w.wheelEvent = lambda e: None
                     elif ptype == "bool":
                         w = QCheckBox("启用")
                         w.setChecked(bool(param.get("default", False)))
@@ -601,7 +599,7 @@ class LlamaProLauncher(QMainWindow):
         ag.setColumnStretch(0, 0); ag.setColumnStretch(1, 1); ag.setColumnStretch(2, 0); ag.setColumnStretch(3, 1)
 
         ag.addWidget(QLabel("语言:"), 0, 0)
-        self._lang_combo = QComboBox()
+        self._lang_combo = AdaptiveComboBox()
         self._lang_combo.addItems(_list_locales())
         cur_lang = self.config.get("lang", "zh")
         for i in range(self._lang_combo.count()):
@@ -610,7 +608,7 @@ class LlamaProLauncher(QMainWindow):
         self._lang_combo.currentIndexChanged.connect(self._on_language_changed)
         ag.addWidget(self._lang_combo, 0, 1)
         ag.addWidget(QLabel("主题:"), 0, 2)
-        self._theme_combo = QComboBox()
+        self._theme_combo = AdaptiveComboBox()
         self._theme_combo.addItems(["dark", "light"])
         self._theme_combo.setCurrentText(str(self.config.get("theme", "dark")))
         self._theme_combo.currentTextChanged.connect(self.apply_theme)
@@ -668,12 +666,12 @@ class LlamaProLauncher(QMainWindow):
 
         retry_row = QWidget(); rrl = QHBoxLayout(retry_row); rrl.setContentsMargins(0,0,0,0); rrl.setSpacing(3)
         rrl.addWidget(QLabel("重试:"))
-        retry_spin = QSpinBox(); retry_spin.setRange(1,10); retry_spin.setValue(self.config.get("retry_count",3))
+        retry_spin = NoWheelSpinBox(); retry_spin.setRange(1,10); retry_spin.setValue(self.config.get("retry_count",3))
         retry_spin.setMaximumWidth(50)
         retry_spin.valueChanged.connect(lambda v: self.config.update({"retry_count": v}) or self.save_settings())
         rrl.addWidget(retry_spin)
         rrl.addWidget(QLabel("超时(s):"))
-        timeout_spin = QSpinBox(); timeout_spin.setRange(30,3600); timeout_spin.setValue(self.config.get("dl_timeout",300))
+        timeout_spin = NoWheelSpinBox(); timeout_spin.setRange(30,3600); timeout_spin.setValue(self.config.get("dl_timeout",300))
         timeout_spin.setMaximumWidth(65)
         timeout_spin.valueChanged.connect(lambda v: self.config.update({"dl_timeout": v}) or self.save_settings())
         rrl.addWidget(timeout_spin)

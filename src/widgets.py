@@ -7,8 +7,8 @@ import json
 
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-    QTextEdit, QLineEdit, QComboBox, QDialog, QApplication,
-    QFileDialog, QMessageBox, QSizePolicy, QListWidget,
+    QTextEdit, QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox,
+    QDialog, QApplication, QFileDialog, QMessageBox, QSizePolicy, QListWidget,
 )
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QFont
@@ -80,8 +80,27 @@ class CollapsibleSection(QWidget):
 #  AdaptiveComboBox
 # ═══════════════════════════════════════════════
 
+class NoWheelSpinBox(QSpinBox):
+    """QSpinBox 子类：禁用鼠标滚轮更改数值。"""
+    def wheelEvent(self, event):
+        event.ignore()
+
+
+class NoWheelDoubleSpinBox(QDoubleSpinBox):
+    """QDoubleSpinBox 子类：禁用鼠标滚轮更改数值。"""
+    def wheelEvent(self, event):
+        event.ignore()
+
+
 class AdaptiveComboBox(QComboBox):
-    """下拉列表固定上限 + 自适应窗口比例，避免顶满窗口。"""
+    """下拉列表固定上限 + 自适应窗口比例，避免顶满窗口。
+    鼠标滚轮仅在弹出列表内生效，否则忽略。"""
+
+    def wheelEvent(self, event):
+        if self.view().isVisible():
+            super().wheelEvent(event)
+        else:
+            event.ignore()
 
     def showPopup(self):
         max_items = 8  # 硬上限
