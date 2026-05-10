@@ -45,6 +45,7 @@ if [ ! -d ".venv" ]; then
 fi
 
 echo "[3/4] 从 requirements.txt 安装依赖 ..."
+. .venv/bin/activate 2>/dev/null || true
 uv pip install -r requirements.txt
 
 echo "[4/4] 验证安装 ..."

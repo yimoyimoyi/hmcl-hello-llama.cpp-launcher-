@@ -1536,7 +1536,21 @@ class LlamaProLauncher(QMainWindow):
 # ═══════════════════════════════════════════════
 
 def main():
+    # ── 修复 Qt 平台插件路径（uv / start.bat 等进程隔离场景）──
     if sys.platform == "win32":
+        try:
+            import PyQt5
+            _pkg = os.path.dirname(PyQt5.__file__)
+            # 注册 DLL 目录（Qt5/bin）确保 qwindows.dll 等被发现
+            _bin = os.path.join(_pkg, "Qt5", "bin")
+            if os.path.isdir(_bin):
+                os.add_dll_directory(_bin)
+            # 显式设置插件路径（Qt5/plugins）
+            _plugins = os.path.join(_pkg, "Qt5", "plugins")
+            if os.path.isdir(_plugins):
+                os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = _plugins
+        except Exception:
+            pass
         try:
             ctypes.windll.shcore.SetProcessDpiAwareness(2)
         except Exception:

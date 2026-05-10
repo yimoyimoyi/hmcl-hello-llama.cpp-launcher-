@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 cd /d "%~dp0"
 echo ========================================
 echo   Llama.cpp Launcher — uv 环境安装
@@ -27,7 +28,7 @@ echo [2/4] 创建虚拟环境 ...
 if not exist .venv uv venv .venv
 
 echo [3/4] 从 requirements.txt 安装依赖 ...
-uv pip install -r requirements.txt
+call .venv\Scripts\activate.bat && uv pip install -r requirements.txt
 if errorlevel 1 (
     .venv\Scripts\python.exe -m pip install -r requirements.txt
 )

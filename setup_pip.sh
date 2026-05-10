@@ -31,7 +31,7 @@ fi
 PIP="$PYTHON -m pip"
 
 echo "[1/2] 从 requirements.txt 安装依赖 ..."
-$PIP install -r assets/requirements.txt
+$PIP install -r requirements.txt
 
 echo "[2/2] 验证安装 ..."
 $PYTHON -c "from PyQt5.QtWidgets import QApplication; print('PyQt5 安装成功')"
@@ -39,5 +39,5 @@ $PYTHON -c "from PyQt5.QtWidgets import QApplication; print('PyQt5 安装成功'
 echo ""
 echo "========================================"
 echo "  安装完成！"
-echo "  运行: bash start.sh  或  python3 ss.py"
+echo "  运行: bash start.sh  或  python3 main.py"
 echo "========================================"

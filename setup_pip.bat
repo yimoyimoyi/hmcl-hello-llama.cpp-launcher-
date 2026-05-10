@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 cd /d "%~dp0"
 echo ========================================
 echo   Llama.cpp Launcher — pip 环境安装
@@ -14,10 +15,10 @@ if errorlevel 1 (
 )
 
 echo [1/2] 从 requirements.txt 安装依赖 ...
-pip install -r assets\requirements.txt
+pip install -r requirements.txt
 if errorlevel 1 (
     echo [警告] 系统 pip 安装失败，尝试 --user ...
-    pip install --user -r assets\requirements.txt
+    pip install --user -r requirements.txt
 )
 
 echo [2/2] 验证安装 ...
