@@ -29,6 +29,7 @@ from src.config import (
     STYLESHEET, LIGHT_STYLESHEET,
     BTN, WIN_TITLES, PH, UI_LABELS, MSG,
     DYNAMIC_UI_SCHEMA, DEFAULT_CONFIG,
+    PARAM_LABELS,
     _open_folder,
     _list_locales, _apply_locale_to_globals,
 )
@@ -416,7 +417,7 @@ class LlamaProLauncher(QMainWindow):
                         w.setDecimals(3)
                         w.setValue(float(param.get("default", 0.0)))
                     elif ptype == "bool":
-                        w = QCheckBox("启用")
+                        w = QCheckBox(UI_LABELS.get("checkbox_enable", "启用"))
                         w.setChecked(bool(param.get("default", False)))
                     else:
                         w = QLineEdit(str(param.get("default", "")))
@@ -429,7 +430,8 @@ class LlamaProLauncher(QMainWindow):
                     tt    = param.get("tooltip", "")
                     w     = _make_widget(ptype, param)
                     self.dynamic_vars[pid] = w
-                    lbl = QLabel(param["label"])
+                    lbl_text = PARAM_LABELS.get(pid, param.get("label", pid))
+                    lbl = QLabel(lbl_text)
                     if tt:
                         lbl.setToolTip(tt); w.setToolTip(tt)
 
@@ -440,7 +442,9 @@ class LlamaProLauncher(QMainWindow):
                     if col >= max_col:
                         col = 0; row += 1
 
-                title = group.get("group_name", group.get("title", UI_LABELS.get("params_section", "参数")))
+                # 优先翻译参数的 group_name，否则保持原始中文
+                raw_title = group.get("group_name", group.get("title", "参数"))
+                title = PARAM_LABELS.get(raw_title, raw_title.strip())
                 layout.addWidget(_mk_section(f"params_{title}", title, params_w))
 
         # ── 运行模式与端口 ──

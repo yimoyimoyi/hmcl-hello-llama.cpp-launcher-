@@ -109,6 +109,7 @@ CONSOLE_COLORS: dict = {}
 THEME_COLORS:   dict = {}
 EXE_SEARCH:     dict = {}
 SPINBOX_ARROW_COLORS: dict = {}
+PARAM_LABELS:   dict = {}
 
 # 动态 UI 参数 schema
 DYNAMIC_UI_SCHEMA: list = []
@@ -139,7 +140,7 @@ def _apply_locale_to_globals(lang: str):
     """将语言文件中的字符串注入模块级变量，同时合并 ui_config 作为后备。
     使用 .clear() + .update() 原地更新，确保已导入模块的引用也同步更新。"""
     global BTN, WIN_TITLES, PH, UI_LABELS, MSG, CONSOLE_COLORS, THEME_COLORS
-    global EXE_SEARCH, SPINBOX_ARROW_COLORS, DYNAMIC_UI_SCHEMA, _UI_CFG
+    global EXE_SEARCH, SPINBOX_ARROW_COLORS, PARAM_LABELS, DYNAMIC_UI_SCHEMA, _UI_CFG
 
     _UI_CFG = _load_ui_config()
     loc = _load_locale(lang)
@@ -172,6 +173,7 @@ def _apply_locale_to_globals(lang: str):
     THEME_COLORS.clear();   THEME_COLORS.update(_m("主题颜色"))
     EXE_SEARCH.clear();     EXE_SEARCH.update(_m("可执行文件搜索"))
     SPINBOX_ARROW_COLORS.clear(); SPINBOX_ARROW_COLORS.update(_m("SpinBox 箭头颜色"))
+    PARAM_LABELS.clear(); PARAM_LABELS.update(_m("参数标签"))
 
     schema_cfg = _m("参数定义")
     DYNAMIC_UI_SCHEMA.clear()

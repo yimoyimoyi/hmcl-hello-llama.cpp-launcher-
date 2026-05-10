@@ -97,6 +97,34 @@
         "section_params_2": "VRAMと最適化"
     },
 
+    "参数标签": {
+        "_comment": "動的パラメータラベル翻訳。key=パラメータID、value=翻訳されたラベル。",
+        " 推理核心参数 (自动生成) ": "推論コアパラメータ",
+        " 显存与去重优化 ": "VRAMと最適化",
+        "ngl": "GPU 層数 (-ngl):",
+        "ctx": "コンテキスト (-c):",
+        "temp": "温度 (--temp):",
+        "rep_pen": "繰り返しペナルティ (-rp):",
+        "threads": "CPU スレッド (-t):",
+        "tb": "バッチスレッド (-tb):",
+        "batch": "バッチサイズ (-b):",
+        "ubatch": "物理バッチ (-ub):",
+        "min_p": "最小確率 (--min-p):",
+        "top_p": "最大確率 (--top-p):",
+        "image_min_tokens": "画像最小 Token:",
+        "image_max_tokens": "画像最大 Token:",
+        "cache_k": "Cache K タイプ:",
+        "cache_v": "Cache V タイプ:",
+        "dry_mult": "DRY 乗数:",
+        "dry_base": "DRY 基準値:",
+        "dry_len": "DRY 許容長:",
+        "flash_attn": "Flash Attention:",
+        "no_mmap": "MMAP 無効:",
+        "mlock": "メモリロック:",
+        "cmoe": "MoE 定数 (-cmoe):",
+        "ncmoe": "MoE CPU 層数:"
+    },
+
     "消息文本": {
         "_comment": "操作メッセージとステータス通知。{...} は実行時に置換されるプレースホルダー。",
         "save_failed": "保存失敗: {error}",

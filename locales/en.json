@@ -97,6 +97,34 @@
         "section_params_2": "VRAM & Dedup"
     },
 
+    "参数标签": {
+        "_comment": "Dynamic parameter label translations. key=param id, value=translated label.",
+        " 推理核心参数 (自动生成) ": "Inference Parameters",
+        " 显存与去重优化 ": "VRAM & Dedup",
+        "ngl": "GPU Layers (-ngl):",
+        "ctx": "Context (-c):",
+        "temp": "Temperature (--temp):",
+        "rep_pen": "Repetition Penalty (-rp):",
+        "threads": "CPU Threads (-t):",
+        "tb": "Batch Threads (-tb):",
+        "batch": "Batch Size (-b):",
+        "ubatch": "Physical Batch (-ub):",
+        "min_p": "Min Probability (--min-p):",
+        "top_p": "Top Probability (--top-p):",
+        "image_min_tokens": "Image Min Tokens:",
+        "image_max_tokens": "Image Max Tokens:",
+        "cache_k": "Cache K Type:",
+        "cache_v": "Cache V Type:",
+        "dry_mult": "DRY Multiplier:",
+        "dry_base": "DRY Base:",
+        "dry_len": "DRY Allowed Length:",
+        "flash_attn": "Flash Attention:",
+        "no_mmap": "Disable MMAP:",
+        "mlock": "Lock Memory:",
+        "cmoe": "MoE Constant (-cmoe):",
+        "ncmoe": "MoE CPU Layers:"
+    },
+
     "消息文本": {
         "_comment": "Status messages and notifications. {...} are placeholders replaced at runtime.",
         "save_failed": "Save failed: {error}",

@@ -97,6 +97,34 @@
         "section_params_2": "显存与去重优化"
     },
 
+    "参数标签": {
+        "_comment": "动态参数标签翻译。key=参数id，value=对应语言的 label 文字。group 名同理。",
+        " 推理核心参数 (自动生成) ": "推理核心参数",
+        " 显存与去重优化 ": "显存与去重优化",
+        "ngl": "GPU 层数 (-ngl):",
+        "ctx": "上下文 (-c):",
+        "temp": "温度 (--temp):",
+        "rep_pen": "重复惩罚 (-rp):",
+        "threads": "CPU 线程 (-t):",
+        "tb": "批线程 (-tb):",
+        "batch": "批大小 (-b):",
+        "ubatch": "物理批 (-ub):",
+        "min_p": "最低概率 (--min-p):",
+        "top_p": "最高概率 (--top-p):",
+        "image_min_tokens": "图像最小 Token:",
+        "image_max_tokens": "图像最大 Token:",
+        "cache_k": "Cache K 类型:",
+        "cache_v": "Cache V 类型:",
+        "dry_mult": "DRY 乘数:",
+        "dry_base": "DRY 基础:",
+        "dry_len": "DRY 允许长度:",
+        "flash_attn": "Flash-Attn:",
+        "no_mmap": "禁用 MMAP:",
+        "mlock": "锁定内存:",
+        "cmoe": "专家常驻 (-cmoe):",
+        "ncmoe": "内存专家层数:"
+    },
+
     "消息文本": {
         "_comment": "操作提示和状态消息。{...} 占位符运行时替换。",
         "save_failed": "保存失败: {error}",
